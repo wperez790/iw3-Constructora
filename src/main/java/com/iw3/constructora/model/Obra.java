@@ -47,7 +47,7 @@ public class Obra {
 	@JsonBackReference
 	@ManyToOne()
 	@JoinColumn(name="tipoObra_id", nullable = false)
-	TipoObra tipoObra;
+	TipoObra tipo;
 	
 	@ManyToMany
 	@JoinTable(
@@ -130,11 +130,11 @@ public class Obra {
 	
 	
 	public TipoObra getTipoObra() {
-		return tipoObra;
+		return tipo;
 	}
 
 	public void setTipoObra(TipoObra tipoObra) {
-		this.tipoObra = tipoObra;
+		this.tipo = tipoObra;
 	}
 	
 
@@ -144,6 +144,31 @@ public class Obra {
 
 	public void setMaterial(List<Material> material) {
 		this.materiales = material;
+	}
+
+	
+	public TipoObra getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoObra tipo) {
+		this.tipo = tipo;
+	}
+
+	public List<Material> getMateriales() {
+		return materiales;
+	}
+
+	public void setMateriales(List<Material> materiales) {
+		this.materiales = materiales;
+	}
+
+	public List<Obrero> getObreros() {
+		return obreros;
+	}
+
+	public void setObreros(List<Obrero> obreros) {
+		this.obreros = obreros;
 	}
 
 	@Override

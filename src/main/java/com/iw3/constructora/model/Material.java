@@ -24,6 +24,9 @@ public class Material {
 	@Column(length=20)
 	private String descripcion;
 	
+	@Column
+	private int stock;
+	
 	
 	@ManyToMany(mappedBy = "materiales")
 	private List<Obra> obras;
@@ -53,6 +56,22 @@ public class Material {
 	}
 	
 	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	@Override
 	public String toString() {
 		String res = "";

@@ -27,6 +27,9 @@ public class Obrero {
 	@Column(length = 20)
 	private String especialidad;
 	
+	@Column
+	private int añosExperiencia;
+	
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="obra_id", nullable = false)
@@ -63,6 +66,25 @@ public class Obrero {
 
 	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
+	}
+	
+
+	public Obra getObra() {
+		return obra;
+	}
+
+	public void setObra(Obra obra) {
+		this.obra = obra;
+	}
+	
+	
+
+	public int getAñosExperiencia() {
+		return añosExperiencia;
+	}
+
+	public void setAñosExperiencia(int añosExperiencia) {
+		this.añosExperiencia = añosExperiencia;
 	}
 
 	@Override
