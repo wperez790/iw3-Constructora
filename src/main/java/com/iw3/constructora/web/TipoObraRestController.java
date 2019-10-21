@@ -38,9 +38,9 @@ public class TipoObraRestController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<TipoObra> load(@PathVariable("id") int idcomida) {
+	public ResponseEntity<TipoObra> load(@PathVariable("id") int idtipoObra) {
 		try {
-			return new ResponseEntity<TipoObra>(tipoObrasBO.load(idcomida), HttpStatus.OK);
+			return new ResponseEntity<TipoObra>(tipoObrasBO.load(idtipoObra), HttpStatus.OK);
 		} catch (BusinessException e) {
 			return new ResponseEntity<TipoObra>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (NotFoundException e) {
@@ -49,11 +49,11 @@ public class TipoObraRestController {
 	}
 
 	@PostMapping(value = "")
-	public ResponseEntity<String> insert(@RequestBody TipoObra comida) {
+	public ResponseEntity<String> insert(@RequestBody TipoObra tipoObra) {
 		try {
-			tipoObrasBO.save(comida);
+			tipoObrasBO.save(tipoObra);
 			HttpHeaders responseHeaders = new HttpHeaders();
-			responseHeaders.set("location", Constantes.URL_BASE_TIPO_OBRAS + "/" + comida.getId());
+			responseHeaders.set("location", Constantes.URL_BASE_TIPO_OBRAS + "/" + tipoObra.getId());
 			return new ResponseEntity<String>(responseHeaders, HttpStatus.CREATED);
 		} catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,9 +61,9 @@ public class TipoObraRestController {
 	}
 
 	@PutMapping(value = "")
-	public ResponseEntity<String> update(@RequestBody TipoObra comida) {
+	public ResponseEntity<String> update(@RequestBody TipoObra tipoObra) {
 		try {
-			tipoObrasBO.save(comida);
+			tipoObrasBO.save(tipoObra);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

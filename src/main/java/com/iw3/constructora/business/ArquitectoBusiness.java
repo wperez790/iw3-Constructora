@@ -17,6 +17,7 @@ public class ArquitectoBusiness implements IArquitectoBusiness {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	private Arquitecto arquitectoAux = null;
 	private List<Arquitecto> listArquitectoAux;
+	private final int minPuntaje = 6;
 	
 	@Autowired
 	private ArquitectoRepository arquitectoDAO;
@@ -39,16 +40,21 @@ public class ArquitectoBusiness implements IArquitectoBusiness {
 		boolean isNew = arquitecto.getId() == null;
 		
 		try {
-			arquitectoAux = arquitectoDAO.save(arquitecto);
+			if(arquitecto.getPuntuacion() < minPuntaje) {
+				throw new BusinessException("El puntaje necesario debe ser de "+minPuntaje+" o más y el puntaje del arquitecto es: "+arquitecto.getPuntuacion());
+			}
+			else {
+				arquitectoAux = arquitectoDAO.save(arquitecto);
 			
-			if(!isNew) 
-				log.info("UPDATE-COMIDA, objeto: "+ arquitectoAux.toString());
+				if(!isNew) 
+					log.info("UPDATE-COMIDA, objeto: "+ arquitectoAux.toString());
 			
-			else
-				log.info("INSERT-COMIDA, objeto:" + arquitectoAux.toString());
+				else
+					log.info("INSERT-COMIDA, objeto:" + arquitectoAux.toString());
 				
 			
 			return arquitectoAux;
+			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			throw new BusinessException(e);

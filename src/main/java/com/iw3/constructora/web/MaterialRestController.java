@@ -38,9 +38,9 @@ public class MaterialRestController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Material> load(@PathVariable("id") int idcomida) {
+	public ResponseEntity<Material> load(@PathVariable("id") int idmaterial) {
 		try {
-			return new ResponseEntity<Material>(materialsBO.load(idcomida), HttpStatus.OK);
+			return new ResponseEntity<Material>(materialsBO.load(idmaterial), HttpStatus.OK);
 		} catch (BusinessException e) {
 			return new ResponseEntity<Material>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (NotFoundException e) {
@@ -49,11 +49,11 @@ public class MaterialRestController {
 	}
 
 	@PostMapping(value = "")
-	public ResponseEntity<String> insert(@RequestBody Material comida) {
+	public ResponseEntity<String> insert(@RequestBody Material material) {
 		try {
-			materialsBO.save(comida);
+			materialsBO.save(material);
 			HttpHeaders responseHeaders = new HttpHeaders();
-			responseHeaders.set("location", Constantes.URL_BASE_MATERIALES + "/" + comida.getId());
+			responseHeaders.set("location", Constantes.URL_BASE_MATERIALES + "/" + material.getId());
 			return new ResponseEntity<String>(responseHeaders, HttpStatus.CREATED);
 		} catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,9 +61,9 @@ public class MaterialRestController {
 	}
 
 	@PutMapping(value = "")
-	public ResponseEntity<String> update(@RequestBody Material comida) {
+	public ResponseEntity<String> update(@RequestBody Material material) {
 		try {
-			materialsBO.save(comida);
+			materialsBO.save(material);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

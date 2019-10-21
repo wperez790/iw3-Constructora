@@ -42,10 +42,10 @@ public class TipoObraBusiness implements ITipoObraBusiness {
 			tipoObraAux = tipoObraDAO.save(tipoObra);
 			
 			if(!isNew) 
-				log.info("UPDATE-COMIDA, objeto: "+ tipoObraAux.toString());
+				log.info("UPDATE-TIPOOBRA, objeto: "+ tipoObraAux.toString());
 			
 			else
-				log.info("INSERT-COMIDA, objeto:" + tipoObraAux.toString());
+				log.info("INSERT-TIPOOBRA, objeto:" + tipoObraAux.toString());
 				
 			
 			return tipoObraAux;
@@ -86,7 +86,7 @@ public class TipoObraBusiness implements ITipoObraBusiness {
 		}
 		
 		try {
-			log.info("REMOVE-COMIDA, id: "+idTipoObra);
+			log.info("REMOVE-TIPOOBRA, id: "+idTipoObra);
 			tipoObraDAO.deleteById(idTipoObra);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
