@@ -12,10 +12,6 @@ import com.iw3.constructora.model.Obrero;
 public interface ObreroRepository extends JpaRepository<Obrero,Integer> {
 	
 	Optional<List<Obrero>> findAllByAñosExperienciaBetween(int añosMinimos, int añosMaximos);
-	/*Optional<Comida> findFirstByRestauranteNombreOrderByPrecioAsc(String nombre);
-	Optional<Comida> findFirstByRestauranteNombreOrderByPrecioDesc(String nombre);
-	Optional<List<Comida>> findAllByOrderByPrecioAsc();
-	Optional<List<Comida>> findAllByOrderByPrecioDesc();
-	Optional<List<Comida>> findAllByRestauranteNombreOrderByNombreDesc(String nombre);*/
+	
 }
 	

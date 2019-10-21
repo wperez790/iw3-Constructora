@@ -49,7 +49,7 @@ public class Obra {
 	
 	
 	@JsonBackReference
-	@ManyToOne(cascade = CascadeType.ALL)/* ? ? ? Cascade here?*/
+	@ManyToOne()
 	@JoinColumn(name="tipoObra_id", nullable = false)
 	@JsonIgnore
 	private TipoObra tipoObra;
@@ -64,6 +64,7 @@ public class Obra {
 	
 	@OneToMany(mappedBy = "obra", cascade = CascadeType.ALL)
 	@JsonManagedReference
+	@JsonIgnore
 	private List<Obrero> obreros;
 
 	

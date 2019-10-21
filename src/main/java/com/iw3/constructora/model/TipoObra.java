@@ -25,7 +25,7 @@ public class TipoObra {
 	private String nombre;
 	private double precioMetroCuadradoUSD; 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "tipoObra")
+	@OneToMany(mappedBy = "tipoObra", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Obra> obras;
 	

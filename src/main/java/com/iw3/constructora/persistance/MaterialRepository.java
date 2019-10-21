@@ -12,10 +12,6 @@ import com.iw3.constructora.model.Material;
 public interface MaterialRepository extends JpaRepository<Material,Integer> {
 	
 	Optional<List<Material>> findAllByNombreLikeOrderByNombre(String nombre);
-	/*Optional<Comida> findFirstByRestauranteNombreOrderByPrecioAsc(String nombre);
-	Optional<Comida> findFirstByRestauranteNombreOrderByPrecioDesc(String nombre);
-	Optional<List<Comida>> findAllByOrderByPrecioAsc();
-	Optional<List<Comida>> findAllByOrderByPrecioDesc();
-	Optional<List<Comida>> findAllByRestauranteNombreOrderByNombreDesc(String nombre);*/
+
 }
 	
