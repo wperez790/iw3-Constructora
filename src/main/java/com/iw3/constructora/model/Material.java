@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "material")
 public class Material {
@@ -18,18 +20,20 @@ public class Material {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 20)
+	@Column(length = 75)
 	private String nombre;
 	
-	@Column(length=20)
+	@Column(length=150)
 	private String descripcion;
 	
 	@Column
-	private int stock;
+	private Integer stock;
 	
 	
 	@ManyToMany(mappedBy = "materiales")
+	@JsonIgnore
 	private List<Obra> obras;
+	
 	
 	public Integer getId() {
 		return id;
@@ -68,7 +72,7 @@ public class Material {
 		return stock;
 	}
 
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 

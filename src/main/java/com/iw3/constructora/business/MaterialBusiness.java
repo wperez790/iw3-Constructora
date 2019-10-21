@@ -42,10 +42,10 @@ public class MaterialBusiness implements IMaterialBusiness {
 			materialAux = materialDAO.save(material);
 			
 			if(!isNew) 
-				log.info("UPDATE-COMIDA, objeto: "+ materialAux.toString());
+				log.info("UPDATE-MATERIAL, objeto: "+ materialAux.toString());
 			
 			else
-				log.info("INSERT-COMIDA, objeto:" + materialAux.toString());
+				log.info("INSERT-MATERIAL, objeto:" + materialAux.toString());
 				
 			
 			return materialAux;
@@ -86,7 +86,7 @@ public class MaterialBusiness implements IMaterialBusiness {
 		}
 		
 		try {
-			log.info("REMOVE-COMIDA, id: "+idMaterial);
+			log.info("REMOVE-MATERIAL, id: "+idMaterial);
 			materialDAO.deleteById(idMaterial);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

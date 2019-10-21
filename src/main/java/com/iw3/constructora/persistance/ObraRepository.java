@@ -10,7 +10,7 @@ import com.iw3.constructora.model.Obra;
 @Repository
 public interface ObraRepository extends JpaRepository<Obra,Integer> {
 	
-	Optional<List<Obra>> findAllByTipoOrderByTipoNombre();
+	/*Optional<List<Obra>> findAllByTipoObraOrderByNombre();*/
 	Optional<List<Obra>> findAllByArquitectoNombreLikeIgnoreCase(String nombre);
 	
 	/*Optional<Comida> findFirstByRestauranteNombreOrderByPrecioAsc(String nombre);

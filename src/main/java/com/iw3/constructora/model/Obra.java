@@ -5,18 +5,21 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "obra")
@@ -34,32 +37,34 @@ public class Obra {
 	@Column(length = 30)
 	private String localidad;
 	private int metrosCuadrados;
-	@Column(length = 30)
+	@Column(length = 150)
 	private String descripcion;
 	
 	
 	@JsonBackReference
 	@ManyToOne()
 	@JoinColumn(name="arquitecto_id", nullable = false)
-	Arquitecto arquitecto;
+	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
+	private Arquitecto arquitecto;
 	
 	
 	@JsonBackReference
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)/* ? ? ? Cascade here?*/
 	@JoinColumn(name="tipoObra_id", nullable = false)
-	TipoObra tipo;
+	@JsonIgnore
+	private TipoObra tipoObra;
 	
-	@ManyToMany
-	@JoinTable(
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	/*@JoinTable(
 			  name = "obra-materiales", 
-			  joinColumns = @JoinColumn(name = "obra_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "material_id"))
-		List<Material> materiales;
+			  joinColumns = @JoinColumn(name = "material_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "obra_id"))*/
+		private List<Material> materiales;
 	
 	
 	@OneToMany(mappedBy = "obra", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	List<Obrero> obreros;
+	private List<Obrero> obreros;
 
 	
 	public Integer getId() {
@@ -130,11 +135,11 @@ public class Obra {
 	
 	
 	public TipoObra getTipoObra() {
-		return tipo;
+		return tipoObra;
 	}
 
 	public void setTipoObra(TipoObra tipoObra) {
-		this.tipo = tipoObra;
+		this.tipoObra = tipoObra;
 	}
 	
 
@@ -148,11 +153,11 @@ public class Obra {
 
 	
 	public TipoObra getTipo() {
-		return tipo;
+		return tipoObra;
 	}
 
 	public void setTipo(TipoObra tipo) {
-		this.tipo = tipo;
+		this.tipoObra = tipo;
 	}
 
 	public List<Material> getMateriales() {

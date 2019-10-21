@@ -21,7 +21,7 @@ public class Arquitecto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 20)
+	@Column(length = 45)
 	private String nombre;
 	
 	@Column

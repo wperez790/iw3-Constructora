@@ -11,7 +11,7 @@ import com.iw3.constructora.model.Arquitecto;
 @Repository
 public interface ArquitectoRepository extends JpaRepository<Arquitecto,Integer> {
 	
-	Optional<List<Arquitecto>> findFirstByPuntuacion();
+	/*Optional<List<Arquitecto>> findFirstByPuntuacion();*/
 	/*Optional<Comida> findFirstByRestauranteNombreOrderByPrecioAsc(String nombre);
 	Optional<Comida> findFirstByRestauranteNombreOrderByPrecioDesc(String nombre);
 	Optional<List<Comida>> findAllByOrderByPrecioAsc();

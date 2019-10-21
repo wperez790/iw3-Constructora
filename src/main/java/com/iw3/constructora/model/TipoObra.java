@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -22,9 +23,10 @@ public class TipoObra {
 	private Integer id;
 	@Column(length = 30)
 	private String nombre;
-	private double precioMetroCuadrado; 
+	private double precioMetroCuadradoUSD; 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "tipoObra", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tipoObra")
+	@JsonIgnore
 	private List<Obra> obras;
 	
 	
@@ -46,11 +48,11 @@ public class TipoObra {
 	}
 
 	public double getPrecioMetroCuadrado() {
-		return precioMetroCuadrado;
+		return precioMetroCuadradoUSD;
 	}
 
 	public void setPrecioMetroCuadrado(double precioMetroCuadrado) {
-		this.precioMetroCuadrado = precioMetroCuadrado;
+		this.precioMetroCuadradoUSD = precioMetroCuadrado;
 	}
 
 	public List<Obra> getObras() {
@@ -67,7 +69,7 @@ public class TipoObra {
 		String tipoObraJSON ; 
 		tipoObraJSON = "{id:"+this.id;
 		tipoObraJSON += ",nombre:"+this.nombre;
-		tipoObraJSON += ",precioMetroCuadrado:"+this.precioMetroCuadrado+"}";
+		tipoObraJSON += ",precioMetroCuadrado:"+this.precioMetroCuadradoUSD+"}";
 		return tipoObraJSON;
 	}
 	
