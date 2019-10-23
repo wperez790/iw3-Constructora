@@ -42,10 +42,10 @@ public class ObreroBusiness implements IObreroBusiness {
 			obreroAux = obreroDAO.save(obrero);
 			
 			if(!isNew) 
-				log.info("UPDATE-COMIDA, objeto: "+ obreroAux.toString());
+				log.info("UPDATE-OBRERO, objeto: "+ obreroAux.toString());
 			
 			else
-				log.info("INSERT-COMIDA, objeto:" + obreroAux.toString());
+				log.info("INSERT-OBRERO, objeto:" + obreroAux.toString());
 				
 			
 			return obreroAux;
@@ -86,7 +86,7 @@ public class ObreroBusiness implements IObreroBusiness {
 		}
 		
 		try {
-			log.info("REMOVE-COMIDA, id: "+idObrero);
+			log.info("REMOVE-OBRERO, id: "+idObrero);
 			obreroDAO.deleteById(idObrero);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

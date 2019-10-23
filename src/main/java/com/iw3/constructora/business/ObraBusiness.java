@@ -42,10 +42,10 @@ public class ObraBusiness implements IObraBusiness {
 			obraAux = obraDAO.save(obra);
 			
 			if(!isNew) 
-				log.info("UPDATE-COMIDA, objeto: "+ obraAux.toString());
+				log.info("UPDATE-OBRA, objeto: "+ obraAux.toString());
 			
 			else
-				log.info("INSERT-COMIDA, objeto:" + obraAux.toString());
+				log.info("INSERT-OBRA, objeto:" + obraAux.toString());
 				
 			
 			return obraAux;
@@ -86,7 +86,7 @@ public class ObraBusiness implements IObraBusiness {
 		}
 		
 		try {
-			log.info("REMOVE-COMIDA, id: "+idObra);
+			log.info("REMOVE-OBRA, id: "+idObra);
 			obraDAO.deleteById(idObra);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -95,91 +95,4 @@ public class ObraBusiness implements IObraBusiness {
 		
 	}
 	
-	/*@Override
-	public List<Obra> orderByPriceAndRestaurante(String orden, String restaurante)
-			throws BusinessException, NotFoundException {
-		Optional<List<Obra>> op = null;
-		Optional<Obra> opObra = null;
-		List<Obra> list = new ArrayList<>();
-		boolean valid = true;
-		
-		try {
-			switch(orden) {				
-				case "menor":
-					
-					if(restaurante.equals("ALL")) { 
-						op= obraDAO.findAllByOrderByPrecioAsc();
-						if (!op.isPresent()) 
-							throw new NotFoundException("No hay obras cargadas");
-						
-						list = op.get();
-					}
-					else {
-						opObra= obraDAO.findFirstByRestauranteNombreOrderByPrecioAsc(restaurante);
-						if (!opObra.isPresent()) 
-							throw new NotFoundException("No hay obras para el restaurante " + restaurante);
-						
-						list.add(opObra.get());
-					}
-					break;
-				
-				
-				case "mayor":
-					
-					if(restaurante.equals("ALL")) {
-						op= obraDAO.findAllByOrderByPrecioDesc();
-						if (!op.isPresent()) 
-							throw new NotFoundException("No hay obras cargadas");
-						
-						list = op.get();
-					}
-					else {
-						opObra= obraDAO.findFirstByRestauranteNombreOrderByPrecioDesc(restaurante);
-						if (!opObra.isPresent()) 
-							throw new NotFoundException("No hay obras para el restaurante " + restaurante);
-						list.add(opObra.get());
-					}
-					break;
-	
-				default:
-					valid = false;
-			}			
-		}
-		catch (Exception e) {
-			if(e instanceof NotFoundException)
-				throw e;
-			
-			log.error(e.getMessage(), e);
-			throw new BusinessException(e);			
-		}
-		
-		if(!valid) {
-			log.error("BAD-REQUEST, orden:"+orden);
-			throw new BusinessException("Bad request");
-		}
-		
-		if (list.isEmpty()) 
-			throw new NotFoundException("No se encuentra la obra con orden = "+orden+" y restaurante = "+restaurante );			
-		
-		
-		return list;
-		
-	}
-
-	@Override
-	public List<Obra> findObrasByRestaurante(String nombre) throws BusinessException, NotFoundException{
-		Optional<List<Obra>> op = null;
-		try {
-			op = obraDAO.findAllByRestauranteNombreOrderByNombreDesc(nombre);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			throw new BusinessException(e);
-		}
-		
-		if(!op.isPresent()) 
-			throw new NotFoundException("No se encontro lista de obras para el restaurante = "+nombre);
-		
-		return op.get(); 
-	}*/
-
 }

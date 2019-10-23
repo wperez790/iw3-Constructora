@@ -47,10 +47,10 @@ public class ArquitectoBusiness implements IArquitectoBusiness {
 				arquitectoAux = arquitectoDAO.save(arquitecto);
 			
 				if(!isNew) 
-					log.info("UPDATE-COMIDA, objeto: "+ arquitectoAux.toString());
+					log.info("UPDATE-ARQUITECTO, objeto: "+ arquitectoAux.toString());
 			
 				else
-					log.info("INSERT-COMIDA, objeto:" + arquitectoAux.toString());
+					log.info("INSERT-ARQUITECTO, objeto:" + arquitectoAux.toString());
 				
 			
 			return arquitectoAux;
@@ -92,7 +92,7 @@ public class ArquitectoBusiness implements IArquitectoBusiness {
 		}
 		
 		try {
-			log.info("REMOVE-COMIDA, id: "+idArquitecto);
+			log.info("REMOVE-ARQUITECTO, id: "+idArquitecto);
 			arquitectoDAO.deleteById(idArquitecto);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
