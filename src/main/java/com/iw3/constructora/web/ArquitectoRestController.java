@@ -38,9 +38,9 @@ public class ArquitectoRestController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Arquitecto> load(@PathVariable("id") int idcomida) {
+	public ResponseEntity<Arquitecto> load(@PathVariable("id") int idarquitecto) {
 		try {
-			return new ResponseEntity<Arquitecto>(arquitectosBO.load(idcomida), HttpStatus.OK);
+			return new ResponseEntity<Arquitecto>(arquitectosBO.load(idarquitecto), HttpStatus.OK);
 		} catch (BusinessException e) {
 			return new ResponseEntity<Arquitecto>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (NotFoundException e) {
@@ -49,11 +49,11 @@ public class ArquitectoRestController {
 	}
 
 	@PostMapping(value = "")
-	public ResponseEntity<String> insert(@RequestBody Arquitecto comida) {
+	public ResponseEntity<String> insert(@RequestBody Arquitecto arquitecto) {
 		try {
-			arquitectosBO.save(comida);
+			arquitectosBO.save(arquitecto);
 			HttpHeaders responseHeaders = new HttpHeaders();
-			responseHeaders.set("location", Constantes.URL_BASE_ARQUITECTOS + "/" + comida.getId());
+			responseHeaders.set("location", Constantes.URL_BASE_ARQUITECTOS + "/" + arquitecto.getId());
 			return new ResponseEntity<String>(responseHeaders, HttpStatus.CREATED);
 		} catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,9 +61,9 @@ public class ArquitectoRestController {
 	}
 
 	@PutMapping(value = "")
-	public ResponseEntity<String> update(@RequestBody Arquitecto comida) {
+	public ResponseEntity<String> update(@RequestBody Arquitecto arquitecto) {
 		try {
-			arquitectosBO.save(comida);
+			arquitectosBO.save(arquitecto);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
