@@ -38,9 +38,9 @@ public class ObraRestController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Obra> load(@PathVariable("id") int idcomida) {
+	public ResponseEntity<Obra> load(@PathVariable("id") int idObra) {
 		try {
-			return new ResponseEntity<Obra>(obrasBO.load(idcomida), HttpStatus.OK);
+			return new ResponseEntity<Obra>(obrasBO.load(idObra), HttpStatus.OK);
 		} catch (BusinessException e) {
 			return new ResponseEntity<Obra>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (NotFoundException e) {
@@ -49,11 +49,11 @@ public class ObraRestController {
 	}
 
 	@PostMapping(value = "")
-	public ResponseEntity<String> insert(@RequestBody Obra comida) {
+	public ResponseEntity<String> insert(@RequestBody Obra obra) {
 		try {
-			obrasBO.save(comida);
+			obrasBO.save(obra);
 			HttpHeaders responseHeaders = new HttpHeaders();
-			responseHeaders.set("location", Constantes.URL_BASE_OBRAS + "/" + comida.getId());
+			responseHeaders.set("location", Constantes.URL_BASE_OBRAS + "/" + obra.getId());
 			return new ResponseEntity<String>(responseHeaders, HttpStatus.CREATED);
 		} catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,9 +61,9 @@ public class ObraRestController {
 	}
 
 	@PutMapping(value = "")
-	public ResponseEntity<String> update(@RequestBody Obra comida) {
+	public ResponseEntity<String> update(@RequestBody Obra obra) {
 		try {
-			obrasBO.save(comida);
+			obrasBO.save(obra);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

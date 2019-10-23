@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "arquitecto")
@@ -28,8 +30,7 @@ public class Arquitecto {
 	private double puntuacion;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "arquitecto",
-		cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "arquitecto")
 	private List<Obra> obras;
 
 	public Integer getId() {
@@ -55,7 +56,7 @@ public class Arquitecto {
 	public void setPuntuacion(double puntuacion) {
 		this.puntuacion = puntuacion;
 	}
-
+/*
 	public List<Obra> getObras() {
 		return obras;
 	}
@@ -63,7 +64,7 @@ public class Arquitecto {
 	public void setObras(List<Obra> obras) {
 		this.obras = obras;
 	}
-	
+	*/
 	
 	@Override
 	public String toString() {

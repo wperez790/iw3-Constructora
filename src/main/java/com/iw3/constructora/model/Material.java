@@ -29,11 +29,11 @@ public class Material {
 	@Column
 	private Integer stock;
 	
-	
+	/*
 	@ManyToMany(mappedBy = "materiales")
 	@JsonIgnore
 	private List<Obra> obras;
-	
+	*/
 	
 	public Integer getId() {
 		return id;
@@ -50,7 +50,7 @@ public class Material {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+/*
 	public List<Obra> getObras() {
 		return obras;
 	}
@@ -59,7 +59,7 @@ public class Material {
 		this.obras = obras;
 	}
 	
-	
+	*/
 	public String getDescripcion() {
 		return descripcion;
 	}

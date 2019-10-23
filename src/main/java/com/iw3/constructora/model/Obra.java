@@ -42,31 +42,35 @@ public class Obra {
 	
 	
 	@JsonBackReference
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
 	@JoinColumn(name="arquitecto_id", nullable = false)
-	@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
+	//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 	private Arquitecto arquitecto;
 	
 	
-	@JsonBackReference
-	@ManyToOne()
-	@JoinColumn(name="tipoObra_id", nullable = false)
-	@JsonIgnore
-	private TipoObra tipoObra;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	/*@JoinTable(
-			  name = "obra-materiales", 
-			  joinColumns = @JoinColumn(name = "material_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "obra_id"))*/
+		//@JsonBackReference
+		@ManyToOne()
+		@JoinColumn(name="tipoObra_id", nullable = false)
+		@JsonIgnore
+		private TipoObra tipoObra;
+		/*
+		@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+		@JsonIgnore
+		/*@JoinTable(
+				  name = "obra-materiales", 
+				  joinColumns = @JoinColumn(name = "material_id"), 
+				  inverseJoinColumns = @JoinColumn(name = "obra_id"))*/
+		/*
 		private List<Material> materiales;
-	
-	
-	@OneToMany(mappedBy = "obra", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	@JsonIgnore
-	private List<Obrero> obreros;
+		
+		
+		@OneToMany(mappedBy = "obra", cascade = CascadeType.ALL)
+		//@JsonManagedReference
+		/*
+		@JsonIgnore
+		private List<Obrero> obreros;
 
+		*/
 	
 	public Integer getId() {
 		return id;
@@ -142,7 +146,7 @@ public class Obra {
 	public void setTipoObra(TipoObra tipoObra) {
 		this.tipoObra = tipoObra;
 	}
-	
+	/*
 
 	public List<Material> getMaterial() {
 		return materiales;
@@ -176,7 +180,7 @@ public class Obra {
 	public void setObreros(List<Obrero> obreros) {
 		this.obreros = obreros;
 	}
-
+*/
 	@Override
 	public String toString() {
 		String obraJSON ; 
